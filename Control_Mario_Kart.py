@@ -27,13 +27,13 @@ height = 500
 circle_radius = 50
 
 # Definir el límite de distancia | Define the distance limit
-distancia_limite = 190
+limit_distance = 190
 
 # -------------------
 
 
 # Definir el centro y el radio del círculo | Define the center and radius of the circle
-centro_circulo = (int(width * 0.75), int(height * 0.5))
+center_circle = (int(width * 0.75), int(height * 0.5))
 
 # Iniciar la detección de pose | Start pose detection
 
@@ -79,7 +79,7 @@ with pose.Pose(static_image_mode=False, model_complexity=0) as body:
             )
 
             # Dibujar el círculo | Draw the circle
-            cv2.circle(frame, centro_circulo, circle_radius, (0, 255, 0), 2)
+            cv2.circle(frame, center_circle, circle_radius, (0, 255, 0), 2)
 
             # Obtener las coordenadas de las manos | Get the coordinates of the hands
             right_hand = results.pose_landmarks.landmark[
@@ -113,10 +113,10 @@ with pose.Pose(static_image_mode=False, model_complexity=0) as body:
                 angle = math.degrees(angle)
 
                 # Calcular la distancia entre las manos | Calculate the distance between the hands
-                distancia = math.sqrt(dx**2 + dy**2)
+                distance = math.sqrt(dx**2 + dy**2)
 
                 # Si la distancia es menor al límite | If the distance is less than the limit
-                if distancia < distancia_limite:
+                if distance < limit_distance:
                     
                     # Si el ángulo es mayor a 70 y menor a 165 | If the angle is greater than 70 and less than 165
                     if (angle > 70) and (angle < 165):
@@ -139,13 +139,13 @@ with pose.Pose(static_image_mode=False, model_complexity=0) as body:
                         keyboard.release("d")
 
                 # Si la distancia entre la mano y el centro del círculo | If the distance between the hand and the center of the circle
-                dist = math.sqrt(
-                    (left_hand_px[0] - centro_circulo[0]) ** 2
-                    + (left_hand_px[1] - centro_circulo[1]) ** 2
+                distance_circle = math.sqrt(
+                    (left_hand_px[0] - center_circle[0]) ** 2
+                    + (left_hand_px[1] - center_circle[1]) ** 2
                 )
 
                 # Si la distancia es menor al radio del círculo | If the distance is less than the radius of the circle
-                if dist < circle_radius:
+                if distance_circle < circle_radius:
                     
                     keyboard.press("q")
                     
