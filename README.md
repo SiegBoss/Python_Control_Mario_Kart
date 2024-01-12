@@ -1,4 +1,4 @@
-# Jugar Mario Kart 8 con Visión Artificialen en Python
+# Jugar Mario Kart 8 con Visión Artificial en Python
 
 Este proyecto es una implementación de un sistema de visión artificial para jugar Mario Kart, realizada con Python.
 
